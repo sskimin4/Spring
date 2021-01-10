@@ -13,15 +13,16 @@
 		<property name="jdbcUrl" value="jdbc:log4jdbc:mariadb://localhost:3306/book_ex"></property>
 		<property name="username" value="zerock"></property>
 		<property name="password" value="zerock"></property>
-		<property name="connectionTimeout" value="30000"></property>
 		
 	</bean>	
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-		<constructor-arg ref="hikariConfig"></constructor-arg>
+		<constructor-arg ref="hikariConfig"/>
 	</bean>	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>	
 	</bean>
 	<mybatis-spring:scan base-package="org.zerock.mapper"/>
+	
+	<context:component-scan base-package="org.zerock.service"></context:component-scan>
 </beans>
